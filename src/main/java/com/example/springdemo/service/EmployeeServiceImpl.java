@@ -24,4 +24,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employeeList=employeeRepository.findAllByOrderByLastNameAsc();
         return employeeList;
     }
+
+    @Override
+    public void save(Employee employee) {
+
+         employeeRepository.save(employee);
+    }
 }
