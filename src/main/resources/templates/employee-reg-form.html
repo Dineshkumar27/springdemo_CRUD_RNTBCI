@@ -13,6 +13,8 @@
     <hr>
     <p class="h4 mb-4"> Register Employee</p>
     <form th:object="${employees}" th:action="@{/employees/save}" method="POST">
+
+        <input type="hidden" th:field="*{id}"/>
         <input type="text"
              class="form-control mb-4 w-25" placeholder="firstname" th:field="*{firstName}"/>
         <input type="text"

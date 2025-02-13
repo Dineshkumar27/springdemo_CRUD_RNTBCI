@@ -5,10 +5,7 @@ import com.example.springdemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,5 +43,23 @@ public class EmployeeController {
         //after saving redirecting to list of employee to see the changes
         return "redirect:/employees/list";
     }
+
+    @GetMapping("/showEmployeeFormToUpdate")
+    public String showEmployeeFormToUpdate(@RequestParam("employeeId") int id,Model theModel){
+          Employee employee=employeeService.findById(id);
+
+        theModel.addAttribute("employees",employee);
+
+        return "employee-reg-form";
+    }
+
+    @GetMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("employeeId") int id,Model theModel){
+        employeeService.deleteById(id);
+
+
+        return "redirect:/employees/list";
+    }
+
 
 }
